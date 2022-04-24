@@ -20,7 +20,7 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
 });
 
 process.on('unhandledRejection', (error) => {
-  logger.log('🔴 UNHANDLED REJECTION!');
+  logger.info('🔴 UNHANDLED REJECTION!');
   logger.info(error.name, error.message);
   if (server) {
     server.close(() => {
@@ -33,10 +33,10 @@ process.on('unhandledRejection', (error) => {
 });
 
 process.on('SIGTERM', () => {
-  logger.log('🔴 SIGTERM RECEIVED!');
+  logger.info('🔴 SIGTERM RECEIVED!');
   if (server) {
     server.close(() => {
-      logger.log('⚠️ Server Closed!');
+      logger.info('⚠️ Server Closed!');
     });
   }
 });
